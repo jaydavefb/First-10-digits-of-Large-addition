@@ -1,0 +1,63 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace hackerrank_ProjectEuler_
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            
+            
+
+            int t = Convert.ToInt32(Console.ReadLine());
+            string[] s = new string[t];
+            for (int i = 0; i < t; i++)
+            {
+                s[i] = Console.ReadLine();
+            }
+            long[] sum = new long[50];
+            for (int i = 0; i < 50; i++)
+            {
+                sum[i] = 0;
+            }
+            long vaddi = 0;
+            for (int i =49; i >= 0; i--)
+            {
+                long summ = 0;
+                for (int j = 0; j < t; j++)
+                {
+                    string temp1 = s[j];
+                    string temp2 = temp1[i].ToString();
+                    summ += Convert.ToInt32(temp2);
+                }
+                summ += vaddi;
+                sum[i] += summ;
+                if (i != 0)
+                {
+                    sum[i] = summ % 10;
+                }
+                vaddi = summ / 10;
+            }
+
+            Console.Write(sum[0]);
+
+            long x = sum[0];
+            int count = 0;
+            while (x != 0)
+            {
+                count++;
+                x = x / 10;
+            }
+
+            for (int i = 1; i <=10-count; i++)
+            {
+                Console.Write(sum[i]);
+                
+            }
+            
+        }
+    }
+}
